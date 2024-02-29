@@ -9,12 +9,12 @@ int main(){
     a = fork();
     
     if(a == 0){
-        // sleep(3);
+        sleep(3);
         printf("\nI am child having id = %d", getpid());
         printf("\n Parent id = %d", getppid());
     }else{
         // wait(NULL);
-        sleep(3);
+        // sleep(3);
         printf("\n My chld id = %d", a);
         printf("\n I am parent having id = %d", getpid());
     }

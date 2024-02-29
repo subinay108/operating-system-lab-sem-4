@@ -1,4 +1,4 @@
-// Write a program on duplicating a OOOOprocess image, waiting for a process, zombie
+// Write a program on duplicating a process image, waiting for a process, zombie
 #include<stdio.h>
 #include<stdlib.h>
 #include<sys/ptrace.h>
