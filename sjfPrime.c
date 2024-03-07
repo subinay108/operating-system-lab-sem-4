@@ -43,6 +43,7 @@ int main(){
 	int min = 0;
 	int j;
 	for(i = 0; i < n - 1; i++){
+		min = i;
 		for(j = i + 1; j < n; j++){
 			if(at[min] > at[j]){
 				min = j;
@@ -57,15 +58,14 @@ int main(){
 		// swap i and min of bt
 		swap(&bt[i], &bt[min]);
 
-
 	}
 	// Step 2: Initialize complete timeline to min of arrival time
 	printf("min at: %d", at[0]);
 	int ctTimeline = at[0];
 
 	// Step3: select the process with minimum burst time
-	min = 0;
 	for(i = 0; i < n; i++){
+		min = i;
 		for(j = i + 1; j < n; j++){
 			if(bt[min] > bt[j]){
 				min = j;
@@ -79,8 +79,14 @@ int main(){
 
 
 		// complete the shortest job
-		printf("bt - %d\n", bt[i]);
+		printf("Burst time: \n");
+		printf("i = %d j = %d min = %d\n", i , j, min);
+		printf("bt - %d\n", bt[0]);
+		printf("bt - %d\n", bt[1]);
+		printf("bt - %d\n", bt[2]);
+		printf("bt - %d\n", bt[3]);
 		
+
 		// i is the min
 		ctTimeline += bt[i];
 		ct[i] = ctTimeline;
