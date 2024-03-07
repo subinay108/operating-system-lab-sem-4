@@ -35,7 +35,7 @@ int main(){
 	int min = 0;
 	int j;
 	for(i = 0; i < n - 1; i++){
-		for(j = i; j < n; j++){
+		for(j = i + 1; j < n; j++){
 			if(bt[min] > bt[j]){
 				min = j;
 			}

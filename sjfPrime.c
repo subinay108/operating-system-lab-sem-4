@@ -2,6 +2,7 @@
 
 #include<stdio.h>
 
+
 void swap(int* a, int* b){
 	int temp = *a;
 	*a = *b;
@@ -13,11 +14,8 @@ int main(){
 	printf("Enter the no. of process: ");
 	scanf("%d", &n);
 	int i;
-	int pid[n], at[n], bt[n], ct[n], wt[n];
+	int pid[n], at[n], bt[n], ct[n], tat[n], wt[n];
 
-	int ctTimeline = 0;
-	// arrival time is 0 for all process (assume)
-	// since 'at' is 0 for all therefore 'tat' is same as 'ct'
 
 	// input process ids of each process
 	printf("Enter the process id of all the processes: ");
@@ -31,33 +29,84 @@ int main(){
 		scanf("%d %d", &at[i], &bt[i]);
 	}
 
-	// sort process with respect to burst time
+
+	// ready queue
+	// process with least arrival time will enter at first at readyQueue
+
+	// process will enter to ready queue
+
+	// then their burst time will compared to find the shortest job and selection
+	// selected job will be completed first
+	// after completion
+
+	// Step1: Sort the process with respect to arrival time
 	int min = 0;
 	int j;
 	for(i = 0; i < n - 1; i++){
-		for(j = i; j < n; j++){
-			if(bt[min] > bt[j]){
+		for(j = i + 1; j < n; j++){
+			if(at[min] > at[j]){
 				min = j;
 			}
 		}
-		// swap i and min of bt
-		swap(&bt[i], &bt[min]);
+		// swap i and min of at
+		swap(&at[i], &at[min]);
 
 		// swap i and min of pid
 		swap(&pid[i], &pid[min]);
 
-	}
+		// swap i and min of bt
+		swap(&bt[i], &bt[min]);
 
-	// calculate ct
+
+	}
+	// Step 2: Initialize complete timeline to min of arrival time
+	printf("min at: %d", at[0]);
+	int ctTimeline = at[0];
+
+	// Step3: select the process with minimum burst time
+	min = 0;
 	for(i = 0; i < n; i++){
+		for(j = i + 1; j < n; j++){
+			if(bt[min] > bt[j]){
+				min = j;
+			}
+		}
+		
+		// swap i and min of at, pid, bt, ct
+		swap(&at[i], &at[min]);
+		swap(&bt[i], &bt[min]);
+		swap(&pid[i], &pid[min]);
+
+
+		// complete the shortest job
+		printf("bt - %d\n", bt[i]);
+		
+		// i is the min
 		ctTimeline += bt[i];
 		ct[i] = ctTimeline;
 	}
 
-	// calculate wt
-	// wt = tat - bt = ct - bt;
+	// Step3: 
+
+
+	
+
+	// calculate ct
+	// for(i = 0; i < n; i++){
+	// 	ctTimeline += bt[i];
+	// 	ct[i] = ctTimeline;
+	// }
+
+	// calculate tat
+	// tat = ct - at
 	for(i = 0; i < n; i++){
-		wt[i] = ct[i] - bt[i];
+		tat[i] = ct[i] - at[i];
+	}
+
+	// calculate wt
+	// wt = tat - bt;
+	for(i = 0; i < n; i++){
+		wt[i] = tat[i] - bt[i];
 	}
 
 	// average wait time
@@ -81,7 +130,7 @@ int main(){
 
 	printf("ProcessId\tArrivalTime\tBurstTime\tCompleteTime\tTurnAroundTime\tWaitingTime\n");
 	for(i = 0; i < n; i++){
-		printf("%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\n", pid[i], 0, bt[i], ct[i], ct[i], wt[i]);
+		printf("%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\n", pid[i], at[i], bt[i], ct[i], tat[i], wt[i]);
 	}
 
 	printf("Avergate wait time: %f\n", avgWT);
