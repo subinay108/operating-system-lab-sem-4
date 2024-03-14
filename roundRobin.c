@@ -29,7 +29,7 @@ void dequeue(){
 }
 
 int isQueueEmpty(){
-	if(rear == -1 && front == rear + 1){
+	if(rear == -1 || front == rear + 1){
 		return 1;
 	}
 	return 0;
@@ -97,6 +97,7 @@ int main()
 	int processTimeline = at[0];
 	int timeFlow = 0;
 	while(!isQueueEmpty()){
+		printf("front = %d\n", front);
 		int index = readyQueue[front];
 		if(rt[index] == -1){
 			rt[index] = processTimeline - at[index];
@@ -107,6 +108,7 @@ int main()
 		
 		i = index + 1;
 		while(readyProcess < i && i < n && at[i] == processTimeline){
+			printf("inside loop\n");
 			enqueue(i);
 			i++;
 			readyProcess++;
@@ -120,6 +122,8 @@ int main()
 			enqueue(index);
 			timeFlow = 0;
 		}
+
+		// printf("length of queue: %d\n", (rear - front + 1));
 
 	}
 	
