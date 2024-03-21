@@ -32,9 +32,9 @@ int main(){
 	}
 
 	// sort process with respect to burst time
-	int min = 0;
-	int j;
+	int min = 0, j;
 	for(i = 0; i < n - 1; i++){
+		min = i;
 		for(j = i + 1; j < n; j++){
 			if(bt[min] > bt[j]){
 				min = j;
