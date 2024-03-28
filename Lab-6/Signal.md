@@ -1,4 +1,5 @@
 Signal
+- 
 
 Signals serve two main purposes:
 - To make a process aware that a specific event has occured
