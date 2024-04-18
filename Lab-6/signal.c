@@ -22,9 +22,11 @@ int main(){
     sleep(2);
     printf("Sending SIGTERM\n");
     kill(getpid(), SIGTERM);
+
+    // Signal set operations
     sigset_t set;
-    sigemptyset(&set);
-    sigaddset(&set, SIGUSR1);
+    sigemptyset(&set); // initialize an empty signal set
+    sigaddset(&set, SIGUSR1); // Add SIGUSR1 to the set
     if(sigismember(&set, SIGUSR1)){
         printf("SIGUSR1 is in the set\n");
     }else{
