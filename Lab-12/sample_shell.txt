@@ -1,0 +1,70 @@
+Sample Code of ODD EVEN Check.
+
+echo "Enter the Number" 
+read n
+ r=`expr $n % 2`
+ if [ $r -eq 0 ] 
+then 
+echo "$n is Even number"
+else 
+echo "$n is Odd number"
+ fi
+
+
+
+
+
+#LEAP YEAR
+
+#!/bin/bash
+echo  "Enter year (YYYY): "
+read y
+a = `expr $y % 4`
+b = `expr $y % 100`
+c = `expr $y % 400`
+if [ $a -eq 0 -a $b -ne 0 -o $c -eq 0 ]
+then 
+echo "$y is leap year"
+else
+echo "$y is not a leap year"
+fi
+
+
+#PRIME NUMBER CHECK
+
+#!/bin/bash
+
+read -p "Enter a number : " number
+
+if [ $number -lt 1 ]; then
+    echo $number is not a prime number.
+    exit 1
+fi
+
+if [ $((number % 2)) -eq 0 ]; then
+    echo $number is not a prime number.
+    exit 1
+fi
+
+for ((i=3; i<=$((number ** 0.5)); i+=2)); do
+    if ($((number % i)) -eq 0); then
+        echo $number is not a prime number.
+        exit 1
+    fi
+done
+
+
+#switch Case
+
+#!/bin/sh
+
+FRUIT="kiwi"
+
+case "$FRUIT" in
+   "apple") echo "Apple pie is quite tasty." 
+   ;;
+   "banana") echo "I like banana nut bread." 
+   ;;
+   "kiwi") echo "New Zealand is famous for kiwi." 
+   ;;
+esac
